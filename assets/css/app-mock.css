@@ -1,0 +1,666 @@
+/* Productschermen in de stijl van de echte backoffice, op ware grootte (1440×900, geschaald via --fit).
+   Animaties lopen alleen in de actieve scène en herhalen zich; alle gegevens zijn fictief. */
+@property --k{syntax:'<integer>';initial-value:0;inherits:true}
+@property --n{syntax:'<integer>';initial-value:0;inherits:false}
+
+.product-window .app-window.cx{display:block;background:#f7f8f8;color:#1d1d1f;font:13px/1.45 Geist,system-ui,sans-serif;letter-spacing:0}
+.cx *{box-sizing:border-box}
+.cx .cx-top{position:absolute;left:0;right:0;top:0;height:58px;display:flex;align-items:center;padding:0 22px;background:#fbfbfb;border-bottom:1px solid #eceeee}
+.cx .cx-top>img{height:20px;width:auto}
+.cx .cx-search{position:absolute;left:50%;top:11px;transform:translateX(-50%);width:360px;height:36px;border:1px solid #e3e6e6;border-radius:8px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 12px;color:#9aa1a0;font-size:12px}
+.cx .cx-search kbd{margin-left:auto;font:10px Geist;border:1px solid #e3e6e6;border-radius:4px;padding:1px 5px;color:#9aa1a0}
+.cx .cx-me{margin-left:auto;display:flex;gap:10px;align-items:center}
+.cx .cx-me i{width:34px;height:34px;border:1px solid #e3e6e6;border-radius:8px;display:grid;place-items:center;font-style:normal;color:#666;font-size:13px}
+.cx .cx-me b{width:34px;height:34px;border-radius:8px;background:#cfd8d4;display:grid;place-items:center;font-size:11px;font-weight:600;color:#3d4a45}
+.cx .cx-side{position:absolute;left:0;top:58px;bottom:0;width:200px;padding:16px 10px;border-right:1px solid #eceeee;background:#fbfbfb;display:flex;flex-direction:column;gap:2px;font-size:12px}
+.cx .cx-side a,.cx .cx-side span{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:7px;color:#2a2a2a}
+.cx .cx-side .sub{padding-left:34px;color:#444;font-size:11.5px}
+.cx .cx-side .on{background:#1d1d1f;color:#fff}
+.cx .cx-side .grp{margin-top:6px;font-weight:500}
+.cx .cx-side .end{margin-top:auto}
+.cx .cx-main{position:absolute;left:200px;right:0;top:58px;bottom:0;overflow:hidden}
+.cx .view{position:absolute;inset:0;padding:22px 26px}
+.cx .crumb{font-size:11px;color:#8a8f8e}
+.cx h5{font:600 26px/1.15 Geist,sans-serif;margin:2px 0 0;letter-spacing:-.01em}
+.cx .kpis{position:absolute;right:26px;top:20px;display:grid;grid-template-columns:repeat(4,150px);gap:10px 18px}
+.cx .kpis div{border-left:1px solid #e3e6e6;padding-left:12px}
+.cx .kpis small{display:block;font-size:10px;color:#8a8f8e}
+.cx .kpis b{font-weight:500;font-size:14px}
+.cx .card{position:absolute;background:#fff;border:1px solid #eceeee;border-radius:10px;overflow:hidden}
+.cx .card h6{margin:0;font:500 14px Geist,sans-serif;padding:16px 18px 2px}
+.cx .card p.sub{margin:0;padding:0 18px;font-size:11px;color:#8a8f8e}
+.cx .btn{position:absolute;height:30px;border-radius:6px;background:#1d1d1f;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.cx .row{display:grid;grid-template-columns:34px 1fr auto;gap:4px 10px;padding:12px 18px;border-top:1px solid #f0f1f1;font-size:11px}
+.cx .row .av{width:30px;height:30px;border-radius:6px;background:#e7ebea;display:grid;place-items:center;font-size:10px;color:#556;grid-row:span 2}
+.cx .row b{font-weight:500;font-size:12px}
+.cx .row em{font-style:normal;color:#8a8f8e;font-size:10px}
+.cx .row .st{display:flex;align-items:center;gap:6px;color:#444}
+.cx .row .st:before{content:'';width:7px;height:7px;border-radius:50%;background:#a9b0ae}
+.cx .row .st.nieuw:before{background:#5f7d70}
+.cx .row .st.voorstel:before{background:#2f9e6a}
+.cx .row .bar{grid-column:2/4;height:4px;border-radius:3px;background:#eceeee;overflow:hidden}
+.cx .row .bar i{display:block;height:100%;width:var(--w,0);background:#9fb3aa}
+.cx .chart{position:absolute;left:18px;right:18px;bottom:16px;top:62px}
+.cx .chart svg{width:100%;height:100%;overflow:visible}
+.cx .chart .grid line{stroke:#f0f1f1}
+.cx .chart .area{fill:url(#cxg)}
+.cx .chart .lijn{fill:none;stroke:#8fa79c;stroke-width:2;stroke-dasharray:1400;stroke-dashoffset:0}
+.cx .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+.cx .chip:before{content:'';width:8px;height:8px;border-radius:50%;background:var(--c,#a9b0ae)}
+.cx .field small{display:block;font-size:10px;color:#8a8f8e}
+.cx .field b{display:block;font-weight:500;font-size:14px;padding-bottom:9px;border-bottom:1px solid #f0f1f1;margin-bottom:9px}
+.cx .bigamt{font:600 54px/1 Geist,sans-serif;letter-spacing:-.02em}
+.cx .bigamt sup{font-size:22px;vertical-align:6px;margin-right:4px}
+.cx .count{--k:150}
+.cx .count:after{counter-reset:k var(--k);content:counter(k) ".000"}
+.cx .ruimte{height:8px;border-radius:5px;background:#eceeee;overflow:hidden}
+.cx .ruimte i{display:block;height:100%;width:62%;background:linear-gradient(90deg,#9fb3aa,#5f7d70);border-radius:5px}
+.cx .facts{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:16px}
+.cx .facts div{border-left:1px solid #eceeee;padding:0 12px}
+.cx .facts div:first-child{border:0;padding-left:0}
+.cx .facts small{display:block;font-size:10px;color:#8a8f8e}
+.cx .facts b{font-weight:500}
+.cx .check{display:grid;grid-template-columns:22px 1fr auto;align-items:center;gap:10px;padding:11px 18px;border-top:1px solid #f0f1f1;font-size:12px}
+.cx .check i{width:20px;height:20px;border-radius:50%;border:1.5px solid #cfd5d3;display:grid;place-items:center;font-style:normal;font-size:11px;color:#fff;position:relative}
+.cx .check i:after{content:'✓';opacity:0}
+.cx .check em{font-style:normal;font-size:10px;color:#8a8f8e}
+.cx .ltv{position:relative;height:12px;border-radius:7px;background:#eceeee;margin:8px 0 4px}
+.cx .ltv i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;width:58%;background:linear-gradient(90deg,#9fb3aa,#5f7d70)}
+.cx .ltv u{position:absolute;left:80%;top:-5px;bottom:-5px;border-left:1.5px dashed #1d1d1f;text-decoration:none}
+.cx .pandfoto{height:150px;border-radius:8px;background:linear-gradient(160deg,#dfe7e3 0%,#c9d6d0 55%,#b8c8c0 100%);position:relative;overflow:hidden}
+.cx .pandfoto:before{content:'';position:absolute;left:18%;right:18%;bottom:0;height:62%;background:linear-gradient(180deg,#f4f6f5,#e2e8e5);clip-path:polygon(0 30%,50% 0,100% 30%,100% 100%,0 100%)}
+.cx .pandfoto:after{content:'';position:absolute;left:30%;right:30%;bottom:0;height:34%;background:repeating-linear-gradient(90deg,#9fb3aa55 0 14%,transparent 14% 22%)}
+.cx .toast{position:absolute;right:26px;bottom:24px;background:#1d1d1f;color:#fff;border-radius:10px;padding:14px 18px;font-size:12px;display:flex;gap:12px;align-items:center;box-shadow:0 12px 30px #0002}
+.cx .toast b{font-weight:500}
+.cx .toast i{width:22px;height:22px;border-radius:50%;background:#2f9e6a;display:grid;place-items:center;font-style:normal}
+.cx .tbl{width:100%;border-collapse:collapse;font-size:12px}
+.cx .tbl th{font-weight:400;font-size:10px;color:#8a8f8e;text-align:left;padding:10px 18px;border-bottom:1px solid #f0f1f1}
+.cx .tbl td{padding:13px 18px;border-bottom:1px solid #f0f1f1}
+.cx .tbl td:last-child,.cx .tbl th:last-child{text-align:right}
+.cx .bars{display:flex;align-items:flex-end;gap:26px;height:100%;padding:0 10px}
+.cx .bars div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px;height:100%;font-size:10px;color:#8a8f8e}
+.cx .bars i{display:block;width:100%;height:var(--h);border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#9fb3aa,#c9d6d0);transform-origin:bottom}
+.cx .cursor{position:absolute;left:0;top:0;width:22px;height:22px;z-index:9;pointer-events:none;filter:drop-shadow(0 2px 3px #0003);opacity:0}
+.cx .cursor:after{content:'';position:absolute;left:-14px;top:-14px;width:30px;height:30px;border-radius:50%;background:#5f7d7033;transform:scale(0)}
+.cx .pill{display:inline-block;font-size:10px;padding:3px 8px;border-radius:20px;background:#eef2f0;color:#3d4a45}
+
+/* Beginstand (ook zonder animatie): eindbeeld */
+.cx .v-detail{opacity:0}
+
+/* ---------- Flow 1: nieuwe aanvraag → openen → bedrag en ruimte → voorstel ---------- */
+.chapter.active .cx.flow1 .v-dash{animation:f1dash 11s infinite}
+.chapter.active .cx.flow1 .v-detail{animation:f1det 11s infinite}
+.chapter.active .cx.flow1 .newrow{animation:f1row 11s infinite}
+.chapter.active .cx.flow1 .newrow .bar i{animation:f1bar 11s infinite}
+.chapter.active .cx.flow1 .cursor{animation:f1cur 11s infinite}
+.chapter.active .cx.flow1 .cursor:after{animation:f1klik 11s infinite}
+.chapter.active .cx.flow1 .count{animation:f1count 11s infinite}
+.chapter.active .cx.flow1 .ruimte i{animation:f1ruimte 11s infinite}
+.chapter.active .cx.flow1 .st-a{animation:f1sta 11s infinite}
+.chapter.active .cx.flow1 .st-b{animation:f1stb 11s infinite}
+.chapter.active .cx.flow1 .lijn{animation:teken 11s infinite}
+.cx.flow1 .newrow{max-height:92px;overflow:hidden}
+.cx.flow1 .st-b{opacity:0;position:absolute}
+@keyframes f1dash{0%,36%{opacity:1;transform:none}42%,94%{opacity:0;transform:translateX(-30px)}100%{opacity:1;transform:none}}
+@keyframes f1det{0%,38%{opacity:0;transform:translateX(40px)}44%,92%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateX(40px)}}
+@keyframes f1row{0%,8%{max-height:0;opacity:0;background:#fff}14%{max-height:92px;opacity:1;background:#eef4f1}30%,100%{max-height:92px;opacity:1;background:#fff}}
+@keyframes f1bar{0%,12%{--w:0%;width:0}22%,100%{width:18%}}
+@keyframes f1cur{0%,16%{opacity:0;transform:translate(1180px,760px)}20%{opacity:1;transform:translate(1180px,760px)}32%,36%{opacity:1;transform:translate(260px,250px)}40%{opacity:0;transform:translate(260px,250px)}100%{opacity:0;transform:translate(260px,250px)}}
+@keyframes f1klik{0%,33%{transform:scale(0);opacity:1}37%{transform:scale(1.4);opacity:0}100%{transform:scale(0)}}
+@keyframes f1count{0%,44%{--k:0}60%,100%{--k:150}}
+@keyframes f1ruimte{0%,46%{width:0}64%,100%{width:62%}}
+@keyframes f1sta{0%,68%{opacity:1}72%,100%{opacity:0}}
+@keyframes f1stb{0%,68%{opacity:0;transform:translateY(6px)}72%,100%{opacity:1;transform:none}}
+@keyframes teken{0%{stroke-dashoffset:1400}25%,100%{stroke-dashoffset:0}}
+
+/* ---------- Flow 2: beoordeling, controles vinken af, LTV, voorstel klaar ---------- */
+.chapter.active .cx.flow2 .check i{animation:vink 10s infinite;animation-delay:calc(var(--d) * 1s)}
+.chapter.active .cx.flow2 .check i:after{animation:vinkt 10s infinite;animation-delay:calc(var(--d) * 1s)}
+.chapter.active .cx.flow2 .ltv i{animation:ltv 10s infinite}
+.chapter.active .cx.flow2 .toast{animation:toast 10s infinite}
+.chapter.active .cx.flow2 .chip-b{animation:f1stb 10s infinite}
+.chapter.active .cx.flow2 .chip-a{animation:f1sta 10s infinite}
+.cx.flow2 .chip-b{opacity:0;position:absolute}
+.chapter.active .cx.flow2 .toast{opacity:0}
+@keyframes vink{0%{background:transparent;border-color:#cfd5d3}6%,90%{background:#2f9e6a;border-color:#2f9e6a}100%{background:transparent;border-color:#cfd5d3}}
+@keyframes vinkt{0%{opacity:0}6%,90%{opacity:1}100%{opacity:0}}
+@keyframes ltv{0%,10%{width:0}30%,94%{width:58%}100%{width:0}}
+@keyframes toast{0%,70%{opacity:0;transform:translateY(16px)}74%,94%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateY(16px)}}
+.cx.flow2 .toast{opacity:1}
+
+/* ---------- Flow 3: investeerdersportaal, rijen en spreiding ---------- */
+.chapter.active .cx.flow3 .tbl tbody tr{animation:rij 9s infinite;animation-delay:calc(var(--d) * .25s)}
+.chapter.active .cx.flow3 .bars i{animation:groei 9s infinite}
+.chapter.active .cx.flow3 .cursor{animation:f3cur 9s infinite}
+.chapter.active .cx.flow3 .cursor:after{animation:f3klik 9s infinite}
+.chapter.active .cx.flow3 .hl{animation:hl 9s infinite}
+@keyframes rij{0%{opacity:0;transform:translateY(10px)}8%,100%{opacity:1;transform:none}}
+@keyframes groei{0%,10%{transform:scaleY(0)}35%,100%{transform:scaleY(1)}}
+@keyframes f3cur{0%,40%{opacity:0;transform:translate(1200px,700px)}44%{opacity:1;transform:translate(1200px,700px)}56%,62%{opacity:1;transform:translate(560px,436px)}68%,100%{opacity:0;transform:translate(560px,436px)}}
+@keyframes f3klik{0%,57%{transform:scale(0);opacity:1}61%{transform:scale(1.4);opacity:0}100%{transform:scale(0)}}
+@keyframes hl{0%,60%{background:transparent}64%,92%{background:#eef4f1}100%{background:transparent}}
+
+@media(prefers-reduced-motion:reduce){.chapter.active .cx *,.chapter.active .cx *:after{animation:none!important}.cx .cursor{display:none}}
+
+/* ---------- RiskResolve: echte schil (donkere balk, limoen accent), één fictief dossier door tien stappen ---------- */
+.product-window .app-window.rr{display:block;background:#f6f6f3;color:#1f2321;font:13px/1.45 Geist,system-ui,sans-serif;--lime:#8cc63f}
+.rr *{box-sizing:border-box}
+.rr .rr-top{position:absolute;left:0;right:0;top:0;height:50px;background:#262a29;display:flex;align-items:center;padding:0 16px;color:#fff}
+.rr .rr-logo{width:228px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:17px}
+.rr .rr-logo i{color:var(--lime);font-style:normal;font-size:20px}
+.rr .rr-search{position:absolute;left:50%;transform:translateX(-50%);width:380px;height:30px;border-radius:6px;background:#3a3f3d;color:#9aa19e;font-size:11px;display:flex;align-items:center;padding:0 12px;gap:8px}
+.rr .rr-search kbd{margin-left:auto;font:10px Geist;border:1px solid #555;border-radius:4px;padding:0 5px}
+.rr .rr-acts{margin-left:auto;display:flex;gap:8px}
+.rr .rr-acts span{width:28px;height:28px;border-radius:6px;display:grid;place-items:center;background:#3a3f3d;font-size:12px}
+.rr .rr-acts .lg{background:var(--lime);color:#1f2321;font-weight:600;font-size:10px}
+.rr .rr-side{position:absolute;left:0;top:50px;bottom:0;width:220px;background:#fff;border-right:1px solid #e8e8e3;padding:12px 10px;font-size:12px;display:flex;flex-direction:column;gap:1px}
+.rr .rr-org{display:flex;gap:8px;align-items:center;padding:4px 6px 14px;border-bottom:1px solid #eee;margin-bottom:10px}
+.rr .rr-org b{width:26px;height:26px;border-radius:50%;background:#eef0ea;display:grid;place-items:center;font-size:10px}
+.rr .rr-org small{display:block;font-size:9px;color:#999}
+.rr .rr-side h6{margin:10px 6px 4px;font:600 9px Geist;letter-spacing:.12em;color:#7a807c}
+.rr .rr-side h6:before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--lime);margin-right:6px;vertical-align:1px}
+.rr .rr-side a{padding:7px 8px;border-radius:6px;color:#2a2e2c}
+.rr .rr-side a.on{background:#f0f3ea;font-weight:500}
+.rr .rr-side .end{margin-top:auto}
+.rr .rr-main{position:absolute;left:220px;right:0;top:50px;bottom:0;padding:18px 26px;overflow:hidden}
+.rr .crumb{font-size:10.5px;color:#8a8f8c}
+.rr .rr-head{display:flex;align-items:center;gap:12px;margin:6px 0 14px}
+.rr .rr-head h5{margin:0;font:600 22px/1.2 Geist,sans-serif}
+.rr .pl{display:inline-flex;align-items:center;gap:5px;font-size:10.5px;padding:3px 9px;border-radius:20px;background:#eef0ea;color:#3b413e;white-space:nowrap}
+.rr .pl.ok{background:#e8f3da;color:#3e6b12}
+.rr .pl.let{background:#fbf0d6;color:#8a5a00}
+.rr .pl.nu{background:#1f2321;color:#fff}
+.rr .steps{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;margin-bottom:16px}
+.rr .steps div{font-size:9.5px;color:#8a8f8c;padding-top:8px;border-top:3px solid #e3e5df;position:relative;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rr .steps div.klaar{border-color:var(--lime);color:#3b413e}
+.rr .steps div.nu{color:#1f2321;font-weight:600}
+.rr .steps div.nu:before{content:'';position:absolute;left:0;top:-3px;height:3px;width:100%;background:#1f2321;transform-origin:left}
+.rr .cols{display:grid;grid-template-columns:1fr 1fr 300px;grid-template-rows:auto 1fr;gap:14px;height:calc(100% - 170px)}
+.rr .cols .tijd{grid-row:span 2}
+.rr .docs{grid-column:span 2}
+.rr .doc{display:grid;grid-template-columns:28px 1fr auto auto;gap:12px;align-items:center;padding:10px 0;border-top:1px solid #f0f0ec;font-size:12px}
+.rr .doc i{width:26px;height:30px;border-radius:4px;background:#eef0ea;display:grid;place-items:center;font-style:normal;font-size:8px;color:#6b726e}
+.rr .doc small{color:#8a8f8c;font-size:10.5px}
+.rr .kaart{background:#fff;border:1px solid #e8e8e3;border-radius:10px;padding:16px 18px;min-height:0;overflow:hidden}
+.rr .kaart h4{margin:0 0 4px;font:600 13px Geist,sans-serif}
+.rr .kaart p{margin:0 0 10px;font-size:10.5px;color:#8a8f8c}
+.rr .regel{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 0;border-top:1px solid #f0f0ec;font-size:12px}
+.rr .tl{position:relative;padding-left:16px;margin:12px 0;font-size:11px}
+.rr .tl:before{content:'';position:absolute;left:3px;top:4px;width:7px;height:7px;border-radius:50%;background:var(--lime)}
+.rr .tl small{display:block;color:#8a8f8c;font-size:10px}
+.rr .knop{position:absolute;right:26px;bottom:20px;height:34px;padding:0 16px;border-radius:7px;background:#1f2321;color:#fff;font-size:11.5px;display:flex;align-items:center;gap:10px}
+.rr .knop i{font-style:normal;color:var(--lime)}
+.rr .cursor{position:absolute;left:0;top:0;width:22px;height:22px;z-index:9;pointer-events:none;opacity:0;filter:drop-shadow(0 2px 3px #0003)}
+.chapter.active .rr .kaart{animation:rrkaart 9s infinite both;animation-delay:calc(var(--d) * .18s)}
+.chapter.active .rr .regel{animation:rrregel 9s infinite both;animation-delay:calc(.5s + var(--d) * .32s)}
+.chapter.active .rr .tl{animation:rrregel 9s infinite both;animation-delay:calc(1s + var(--d) * .45s)}
+.chapter.active .rr .steps div.nu:before{animation:rrstap 9s infinite}
+.chapter.active .rr .cursor{animation:rrcur 9s infinite}
+.chapter.active .rr .knop{animation:rrknop 9s infinite}
+.chapter.active .rr .rr-head .pl.nu{animation:rrpuls 2.4s infinite}
+@keyframes rrkaart{0%{opacity:0;transform:translateY(14px)}5%,100%{opacity:1;transform:none}}
+@keyframes rrregel{0%{opacity:0;transform:translateX(-8px)}4%,100%{opacity:1;transform:none}}
+@keyframes rrstap{0%,10%{transform:scaleX(0)}60%,100%{transform:scaleX(1)}}
+@keyframes rrcur{0%,50%{opacity:0;transform:translate(900px,520px)}54%{opacity:1;transform:translate(900px,520px)}66%,70%{opacity:1;transform:translate(1340px,862px)}76%,100%{opacity:0;transform:translate(1340px,862px)}}
+@keyframes rrknop{0%,67%{background:#1f2321}69%{background:#3e6b12}74%,100%{background:#1f2321}}
+@keyframes rrpuls{0%,100%{box-shadow:0 0 0 0 #8cc63f66}50%{box-shadow:0 0 0 5px #8cc63f00}}
+@media(prefers-reduced-motion:reduce){.chapter.active .rr *{animation:none!important}.rr .cursor{display:none}}
+
+/* ---------- Compadex: openbare bedrijvengids (navy, oranje, rasterlijnen), zoeken → rapport ---------- */
+.product-window .app-window.cdx{display:block;background:#f7f8fa;color:#0f1d3a;font:13px/1.5 Geist,system-ui,sans-serif;--or:#f0592a;--navy:#0f1d3a}
+.cdx *{box-sizing:border-box}
+.cdx .cd-top{position:absolute;left:0;right:0;top:0;height:60px;background:#fff;border-bottom:1px solid #e3e6ec;display:grid;grid-template-columns:150px 1fr repeat(4,auto);align-items:center;padding:0 0 0 240px}
+.cdx .cd-top img{height:22px}
+.cdx .cd-top .zk{height:60px;border-left:1px solid #e3e6ec;border-right:1px solid #e3e6ec;display:flex;align-items:center;gap:10px;padding:0 16px;color:#98a0ae;font-size:12px}
+.cdx .cd-top .zk kbd{margin-left:auto;font:10px Geist;background:#eceef2;border-radius:4px;padding:1px 6px}
+.cdx .cd-top a{height:60px;display:flex;align-items:center;padding:0 24px;border-right:1px solid #e3e6ec;font-size:12px}
+.cdx .cd-main{position:absolute;left:240px;right:240px;top:60px;bottom:0;border-left:1px solid #e3e6ec;border-right:1px solid #e3e6ec;background:#fff;overflow:hidden}
+.cdx .bc{padding:12px 22px;border-bottom:1px solid #e3e6ec;font-size:11px;color:#6b7486}
+.cdx .bc b{color:var(--navy);font-weight:500}
+.cdx .kop{padding:26px 22px 20px}
+.cdx .ey{font-size:10px;font-weight:600;letter-spacing:.12em;color:var(--or)}
+.cdx h5{margin:6px 0 6px;font:700 28px/1.15 Geist,sans-serif;letter-spacing:-.02em}
+.cdx .lead{margin:0;color:#4b5568;font-size:12.5px}
+.cdx .tags{display:flex;gap:6px;margin-top:12px}
+.cdx .tags span{font-size:10px;background:#eceef2;border-radius:4px;padding:3px 8px}
+.cdx .raster{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #e3e6ec}
+.cdx .bk{padding:14px 16px;border-right:1px solid #e3e6ec;border-bottom:1px solid #e3e6ec;font-size:11px;color:#4b5568}
+.cdx .bk:nth-child(3n){border-right:0}
+.cdx .bk .hd{display:flex;gap:10px;align-items:center;margin-bottom:8px}
+.cdx .bk .av{width:34px;height:34px;border:1px solid #e3e6ec;border-radius:4px;display:grid;place-items:center;font-weight:700;font-size:11px;color:var(--navy)}
+.cdx .bk small{display:block;color:var(--or);font-size:10px;font-weight:600}
+.cdx .bk b{color:var(--navy);font-size:13px}
+.cdx .bk .ad{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.cdx .bk .pijl{width:24px;height:24px;border-radius:3px;background:#eceef2;display:grid;place-items:center;color:var(--navy)}
+.cdx .bk.uit .pijl{background:var(--or);color:#fff}
+.cdx .hero{position:absolute;inset:0;background:linear-gradient(180deg,#1b2d55,#0f1d3a);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.cdx .hero h5{font-size:40px;color:#fff;max-width:620px}
+.cdx .hero p{margin:0;color:#c3cbe0;font-size:13px}
+.cdx .groot-zk{width:520px;height:48px;background:#fff;border-radius:4px;display:flex;align-items:center;gap:10px;padding:0 16px;color:var(--navy);font-size:14px;text-align:left}
+.cdx .groot-zk .typ{overflow:hidden;white-space:nowrap;border-right:2px solid var(--or);width:15ch}
+.cdx .knop{display:inline-flex;align-items:center;gap:8px;height:36px;padding:0 16px;background:var(--or);color:#fff;font-size:12px;font-weight:500;border-radius:3px}
+.cdx .knop.lijn{background:transparent;border:1px solid currentColor;color:inherit}
+.cdx .stats{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;color:var(--navy)}
+.cdx .stats div{padding:14px;text-align:center;border-right:1px solid #e3e6ec;font-size:10px;color:#6b7486}
+.cdx .stats b{display:block;font-size:19px;color:var(--navy)}
+.cdx .twee{display:grid;grid-template-columns:1fr 300px;height:calc(100% - 41px)}
+.cdx .twee>div:first-child{border-right:1px solid #e3e6ec;overflow:hidden}
+.cdx .sectie{padding:16px 22px;border-top:1px solid #e3e6ec}
+.cdx .sectie h6{margin:0 0 8px;font:700 15px Geist,sans-serif}
+.cdx .veld{display:grid;grid-template-columns:1fr 1fr;padding:6px 0;font-size:11.5px}
+.cdx .veld span:first-child{color:#4b5568}
+.cdx .rapport{margin:16px;background:var(--navy);color:#fff;padding:18px;border-radius:2px}
+.cdx .rapport h6{margin:0 0 6px;font:700 20px/1.15 Geist,sans-serif}
+.cdx .rapport p{margin:0 0 10px;font-size:11px;color:#c3cbe0}
+.cdx .rapport li{list-style:none;font-size:11px;padding:3px 0}
+.cdx .rapport li:before{content:'✓  ';color:var(--or)}
+.cdx .rapport .prijs{font:700 22px Geist;margin:10px 0}
+.cdx .rapport .prijs small{font-size:10px;font-weight:400;color:#c3cbe0}
+.cdx .rapport .knop{width:100%;justify-content:center;margin-top:6px}
+.cdx .inhoud{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;font-size:11.5px;color:var(--or)}
+.cdx .form{padding:20px 22px;display:grid;gap:12px;max-width:520px}
+.cdx .inv{border:1px solid #d5dae3;border-radius:3px;height:38px;display:flex;align-items:center;padding:0 12px;font-size:12px}
+.cdx .inv.label{border:0;height:auto;padding:0;font-size:10.5px;color:#4b5568}
+.cdx .vink{display:flex;gap:8px;align-items:center;font-size:11px}
+.cdx .vink i{width:14px;height:14px;border:1px solid #9aa3b2;border-radius:2px;display:grid;place-items:center;font-style:normal;font-size:9px}
+.cdx .betaal{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cdx .betaal div{border:1px solid #d5dae3;border-radius:4px;padding:14px;font-size:12px;display:flex;justify-content:space-between}
+.cdx .betaal div.kies{border-color:var(--or);box-shadow:0 0 0 1px var(--or) inset}
+.cdx .score{display:flex;gap:6px;margin:8px 0}
+.cdx .score i{width:30px;height:10px;border-radius:2px;background:#e3e6ec}
+.cdx .score i.aan{background:var(--or)}
+.cdx .status{display:flex;gap:10px;align-items:center;font-size:12px}
+.cdx .status span{padding:4px 10px;border-radius:20px;background:#eceef2}
+.cdx .status span.ok{background:#e3f4e8;color:#1e7a3d}
+.cdx .cursor{position:absolute;left:0;top:0;width:22px;height:22px;z-index:9;pointer-events:none;opacity:0;filter:drop-shadow(0 2px 3px #0003)}
+.chapter.active .cdx .groot-zk .typ{animation:typ 8s steps(15) infinite}
+.chapter.active .cdx .ani{animation:rrkaart 8s infinite both;animation-delay:calc(var(--d,0) * .14s)}
+.chapter.active .cdx .bk.uit{animation:cdxuit 8s infinite}
+.chapter.active .cdx .cursor{animation:cdxcur 8s infinite}
+.chapter.active .cdx .betaal div.kies{animation:cdxkies 8s infinite}
+.chapter.active .cdx .status .b{animation:f1stb 8s infinite}
+.chapter.active .cdx .status .a{animation:f1sta 8s infinite}
+.cdx .status{position:relative}.cdx .status .b{opacity:0;position:absolute;left:0;top:0}
+.chapter.active .cdx .score i.aan{animation:cdxscore 8s infinite both;animation-delay:calc(var(--d) * .2s)}
+.chapter.active .cdx .vink.ani2 i{animation:cdxvink 8s infinite}
+@keyframes typ{0%,8%{width:0}45%,90%{width:15ch}100%{width:0}}
+@keyframes cdxuit{0%,55%{background:#fff}60%,90%{background:#fff4ef}100%{background:#fff}}
+@keyframes cdxcur{0%,40%{opacity:0;transform:translate(1100px,780px)}44%{opacity:1;transform:translate(1100px,780px)}56%,60%{opacity:1;transform:translate(var(--cx,700px),var(--cy,500px))}66%,100%{opacity:0;transform:translate(var(--cx,700px),var(--cy,500px))}}
+@keyframes cdxkies{0%,58%{border-color:#d5dae3;box-shadow:none}62%,100%{border-color:#f0592a;box-shadow:0 0 0 1px #f0592a inset}}
+@keyframes cdxscore{0%{transform:scaleX(0)}6%,100%{transform:scaleX(1)}}
+@keyframes cdxvink{0%,30%{background:transparent;color:transparent}34%,100%{background:#0f1d3a;color:#fff}}
+@media(prefers-reduced-motion:reduce){.chapter.active .cdx *{animation:none!important}.cdx .cursor{display:none}}
+
+/* ---------- Capilex zekerheid: doorkijk naar de straat, pijl naar het pand, akte met stempel ---------- */
+.zk-visual{position:absolute;left:47%;right:4%;top:52%;height:min(74vh,640px);transform:translateY(-50%);margin:0}
+.zk-doorkijk{position:absolute;right:0;top:0;width:68%;aspect-ratio:1384/800;clip-path:polygon(7% 0,93% 0,100% 50%,93% 100%,7% 100%,0 50%);background:#dfe8e4;overflow:hidden}
+.zk-doorkijk:after{content:'';position:absolute;inset:0;clip-path:inherit;box-shadow:inset 0 0 0 10px #ffffffcc,inset 0 0 40px #2e3e3a33;pointer-events:none}
+.zk-doorkijk img{width:100%;height:100%;object-fit:cover;display:block;transform-origin:56% 45%}
+.zk-doorkijk svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.zk-pijl{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;stroke-dasharray:240;stroke-dashoffset:0;filter:drop-shadow(0 2px 4px #0005)}
+.zk-punt{fill:#fff;stroke:#2e2e2e;stroke-width:2}
+.zk-ring{fill:none;stroke:#fff;stroke-width:2;transform-box:fill-box;transform-origin:center}
+.zk-label{position:absolute;left:9%;top:9%;background:#ffffffeb;border-radius:8px;padding:8px 12px;font-size:11px;line-height:1.4;color:#2e2e2e;box-shadow:0 8px 20px #0002}
+.zk-label b{display:block;font-weight:500}
+.zk-label small{color:#6b7a75}
+.zk-akte{position:absolute;left:0;bottom:0;width:60%;padding:26px 28px 24px;background:#fbf8ef;background-image:linear-gradient(90deg,transparent 49.6%,#0000000a 50%,transparent 50.4%),repeating-linear-gradient(0deg,transparent 0 23px,#a8b4ae22 23px 24px);color:#2f3330;font:11.5px/1.55 Georgia,'Times New Roman',serif;box-shadow:0 2px 0 #e9e3d3,0 4px 0 #f3eee1,0 26px 50px #34413c33;transform:rotate(-1.6deg)}
+.zk-akte:before{content:'';position:absolute;inset:8px;border:1px solid #c9c2ae;pointer-events:none}
+.zk-akte .kop{text-align:center;border-bottom:1px solid #c9c2ae;padding-bottom:10px;margin-bottom:10px}
+.zk-akte .kop small{display:block;font:9px Geist,sans-serif;letter-spacing:.2em;color:#7a7462}
+.zk-akte .kop b{display:block;font:400 19px/1.2 'Instrument Serif',Georgia,serif;letter-spacing:.04em;margin-top:4px}
+.zk-akte p{margin:0 0 8px}
+.zk-akte ol{margin:0;padding:0;list-style:none;counter-reset:art}
+.zk-akte li{counter-increment:art;padding:4px 0 4px 64px;position:relative}
+.zk-akte li:before{content:'Artikel ' counter(art);position:absolute;left:0;top:5px;font:600 8.5px Geist,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#7a7462}
+.zk-akte .tek{display:flex;justify-content:space-between;align-items:flex-end;margin-top:12px;padding-right:70px;font:9px Geist,sans-serif;color:#7a7462}
+.zk-akte .tek svg{width:120px;height:34px;display:block}
+.zk-akte .tek path{fill:none;stroke:#23305e;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:0}
+.zk-akte .tek span{border-top:1px solid #9b957f;padding-top:3px;display:block;width:140px}
+.zk-stempel{position:absolute;right:-26px;bottom:-34px;width:112px;height:112px;color:#7b2d4f;transform:rotate(-14deg);mix-blend-mode:multiply;opacity:.85}
+.zk-stempel svg{width:100%;height:100%;overflow:visible}
+.zk-stempel text{font:700 9px Geist,sans-serif;letter-spacing:.18em;fill:currentColor}
+.zk-stempel .mid{font-size:13px;letter-spacing:.06em}
+.zk-visual figcaption{position:absolute;right:0;bottom:-26px;font-size:9px;color:#59685f}
+/* Volgorde bij binnenkomst: doorkijk, pijl, label, akte, artikelen, handtekening, stempel */
+.chapter.active .zk-doorkijk img{animation:zkzoom 14s ease-out both}
+.chapter.active .zk-pijl{animation:zkpijl 1.2s .6s ease-out both}
+.chapter.active .zk-ring{animation:zkring 2.2s 1.6s ease-out infinite}
+.chapter.active .zk-label{animation:zkin .6s 1.5s ease-out both}
+.chapter.active .zk-akte{animation:zkakte .9s .9s cubic-bezier(.2,.8,.2,1) both}
+.chapter.active .zk-akte li{animation:zkin .5s ease-out both;animation-delay:calc(1.5s + var(--d) * .35s)}
+.chapter.active .zk-akte .tek path{animation:zkhand 1.4s 3.5s ease-in-out both}
+.chapter.active .zk-stempel{animation:zkstempel .5s 4.7s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes zkzoom{from{transform:scale(1.18)}to{transform:scale(1.02)}}
+@keyframes zkpijl{from{stroke-dashoffset:240}to{stroke-dashoffset:0}}
+@keyframes zkring{0%{transform:scale(.6);opacity:1}100%{transform:scale(2.6);opacity:0}}
+@keyframes zkin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes zkakte{from{opacity:0;transform:translateY(60px) rotate(2deg)}to{opacity:1;transform:rotate(-1.6deg)}}
+@keyframes zkhand{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+@keyframes zkstempel{0%{opacity:0;transform:scale(2.2) rotate(-24deg)}70%{opacity:.9;transform:scale(.94) rotate(-14deg)}100%{opacity:.85;transform:scale(1) rotate(-14deg)}}
+@media(max-width:760px){
+  .zk-visual{position:relative;left:auto;right:auto;top:auto;transform:none;height:auto;width:100%;display:flex;flex-direction:column}
+  .zk-doorkijk{position:relative;width:100%}
+  .zk-akte{position:relative;width:94%;margin:-22px 0 0 2%;padding:14px 14px 12px;font-size:9px;line-height:1.45}.zk-akte>p{display:none}.zk-akte li{padding-top:2px;padding-bottom:2px}.zk-akte .tek{margin-top:6px;padding-right:40px}.zk-akte .tek svg{width:90px;height:24px}
+  .zk-doorkijk{width:92%;align-self:flex-end}
+  .zk-akte li{padding-left:52px}.zk-akte li:before{font-size:7.5px}
+  .zk-akte .kop b{font-size:15px}
+  .zk-stempel{width:74px;height:74px;right:-8px;bottom:-14px}
+  .zk-label{font-size:9.5px;padding:6px 9px}
+  .zk-visual figcaption{position:static;margin-top:6px}
+}
+@media(prefers-reduced-motion:reduce){.chapter.active .zk-visual *{animation:none!important}}
+
+/* Uitlijning spiegelblok: beide kolommen beginnen op dezelfde lijn, brug op kophoogte */
+.h6-mirror{align-items:start!important;column-gap:28px}
+.h6-mirror>div>h3{margin:0 0 14px!important;line-height:1.15}
+.h6-mirror ul{margin:0}
+.h6-mirror .h6-bridge{align-self:start;margin-top:17px}
+@media(max-width:760px){.h6-mirror{grid-template-columns:1fr!important;row-gap:14px}.h6-mirror .h6-bridge{display:none}}
+
+.h6-tegenzit{max-width:760px;font-size:13px;line-height:1.6;margin:22px 0 0;padding-top:14px;border-top:1px solid #cdd8d3}.h6-tegenzit b{display:block;font-weight:500;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#5f7d70;margin-bottom:4px}
+@media(max-width:760px){.h6-tegenzit{font-size:11.5px;margin-top:14px}}
+
+/* Zijbalk Capilex-backoffice onscherp: het volledige systeem hoeft niemand te zien (Lex 03-11) */
+.cx .cx-side>*{filter:blur(3.5px);opacity:.75;user-select:none}
+.cx .cx-side .on{filter:blur(2.5px)}
+
+/* Stapuitleg: drie regels (doet / systeem / waarom) in plaats van 'Klant / Achter de schermen' */
+.stap-uitleg{display:grid;gap:0;margin-top:18px;max-width:520px;border-top:1px solid #cdd8d3}
+.stap-uitleg>div{display:grid!important;grid-template-columns:130px 1fr;gap:14px;padding:11px 0!important;border-bottom:1px solid #d8e0dc;align-items:baseline}
+.stap-uitleg dt{font-size:9.5px!important;letter-spacing:.14em;text-transform:uppercase;color:#5f7d70!important;font-weight:500}
+.stap-uitleg dd{margin:0;font-size:13px!important;line-height:1.55!important;color:#26302d}
+.stap-uitleg .waarom dd{font-family:'Instrument Serif',Georgia,serif;font-size:18px!important;line-height:1.3!important;color:#2e2e2e}
+@media(max-width:760px){.stap-uitleg{margin-top:10px}.stap-uitleg>div{grid-template-columns:1fr;gap:3px;padding:7px 0!important}.stap-uitleg dd{font-size:11.5px!important}.stap-uitleg .waarom dd{font-size:15px!important}}
+
+/* Uitlegalinea per scène (Lex 03-11: meer tekstuele uitleg) */
+.chapter .copy .uitleg{font-size:14.5px!important;line-height:1.65!important;color:#26302d;max-width:560px;margin:4px 0 18px!important;font-weight:300}
+@media(max-width:760px){.chapter .copy .uitleg{font-size:12.5px!important;line-height:1.55!important;margin:0 0 12px!important}}
+
+/* Zekerheden van de investeerder: keten van vastgoed naar investeerder */
+#investeerderszekerheden .copy{max-width:520px}
+.zf-punten{list-style:none;counter-reset:zp;margin:0 0 6px;padding:0;display:grid;gap:12px;max-width:500px}
+.zf-punten li{counter-increment:zp;position:relative;padding-left:40px;font-size:13px;line-height:1.55;color:#26302d}
+.zf-punten li:before{content:counter(zp);position:absolute;left:0;top:0;width:26px;height:26px;display:grid;place-items:center;font:400 15px 'Instrument Serif',Georgia,serif;color:#2e2e2e;background:#fff;border:1px solid #cdd8d3;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%)}
+.zf-punten b{display:block;font-weight:500;color:#2e2e2e}
+.zk-flow{position:absolute;left:54%;right:6%;top:50%;transform:translateY(-46%);margin:0;display:flex;flex-direction:column;align-items:stretch;max-width:520px}
+.zf-blok{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center;padding:14px 18px;border-radius:16px;background:#ffffffc7;border:1px solid #ffffffee;box-shadow:0 12px 30px #34413c14;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.zf-blok b{display:block;font-weight:500;font-size:13.5px;color:#2e2e2e}
+.zf-blok span{font-size:11.5px;color:#5c6a65;line-height:1.45}
+.zf-huizen{display:flex;gap:6px}
+.zf-huizen svg{width:38px;height:38px;fill:#e9eef0;stroke:#5f7d70;stroke-width:1.3;stroke-linejoin:round}
+.zf-hexen{display:grid;grid-template-columns:repeat(4,26px);gap:3px 4px;width:120px}
+.zf-hexen span{height:24px;background:linear-gradient(160deg,#dfe8e3,#9fb3aa);clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%)}
+.zf-hexen span:nth-child(n+5){transform:translateX(15px)}
+.zf-stapel{display:grid;font-size:10px;border-radius:8px;overflow:hidden;border:1px solid #cdd8d3}
+.zf-stapel .laag-obl{padding:10px 8px;background:#eef2f0;color:#2e2e2e;text-align:center}
+.zf-stapel .laag-buf{padding:7px 8px;background:#5f7d70;color:#fff;text-align:center;letter-spacing:.02em}
+.zf-inv-ico{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#2e2e2e;color:#fff;font:400 22px 'Instrument Serif',Georgia,serif;justify-self:start}
+.zf-pijl{position:relative;height:38px;margin-left:92px;display:flex;align-items:center}
+.zf-pijl i{position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(#9fb3aa,#9fb3aa) no-repeat;background-size:2px 100%;overflow:hidden}
+.zf-pijl i:after{content:'';position:absolute;left:-3px;top:-8px;width:8px;height:8px;border-radius:50%;background:#5f7d70;box-shadow:0 0 0 3px #9fb3aa44}
+.zf-pijl em{font-style:normal;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#5f7d70;margin-left:14px}
+.zf-tegen{margin-top:14px;padding:10px 14px;border:1px dashed #9fb3aa;border-radius:12px;font-size:11.5px;color:#4c5955;background:#ffffff80}
+.zf-tegen span{display:block;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#5f7d70;margin-bottom:2px}
+.zk-flow figcaption{font-size:9px;color:#59685f;margin-top:8px}
+.chapter.active .zk-flow>.zf-blok,.chapter.active .zk-flow>.zf-pijl,.chapter.active .zk-flow>.zf-tegen{animation:zfin .55s ease-out both;animation-delay:calc(.2s + var(--d) * .14s)}
+.chapter.active .zf-pijl i:after{animation:zfstroom 1.8s ease-in-out infinite;animation-delay:calc(1.2s + var(--d) * .3s)}
+@keyframes zfin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes zfstroom{0%{top:-8px;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:100%;opacity:0}}
+@media(max-width:1100px) and (min-width:761px){.zk-flow{left:56%;right:3%}.zf-blok{grid-template-columns:110px 1fr;padding:10px 12px}.zf-huizen svg{width:28px;height:28px}.zf-hexen{width:96px;grid-template-columns:repeat(4,20px)}.zf-hexen span{height:19px}.zf-pijl{margin-left:66px}}
+@media(max-width:760px){
+  #investeerderszekerheden .copy{max-width:none}
+  .zf-punten li{font-size:11.5px;padding-left:34px}.zf-punten li:before{width:22px;height:22px;font-size:13px}
+  .zk-flow{position:relative;left:auto;right:auto;top:auto;transform:none;max-width:none;margin-top:14px}
+  .zf-blok{grid-template-columns:86px 1fr;gap:10px;padding:9px 11px;border-radius:12px}
+  .zf-huizen svg{width:24px;height:24px}.zf-hexen{width:80px;grid-template-columns:repeat(4,17px);gap:2px 3px}.zf-hexen span{height:16px}.zf-hexen span:nth-child(n+5){transform:translateX(10px)}
+  .zf-blok b{font-size:12px}.zf-blok span{font-size:10.5px}.zf-pijl{height:24px;margin-left:50px}.zf-inv-ico{width:34px;height:34px;font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){.chapter.active .zk-flow *{animation:none!important}}
+
+@media(max-width:760px){.enhanced #investeerderszekerheden,#investeerderszekerheden{flex-direction:column;align-items:stretch;justify-content:flex-start}#investeerderszekerheden .zf-punten,#investeerderszekerheden .h6-tegenzit{display:none}#investeerderszekerheden .zk-flow{width:100%;flex:none}#investeerderszekerheden .h6-risk{margin-top:8px!important}}
+
+@media(max-width:760px){#investeerderszekerheden .zf-pijl{height:16px}#investeerderszekerheden .zf-pijl em{font-size:8.5px}#investeerderszekerheden .zf-blok{padding:7px 10px}#investeerderszekerheden .zk-flow figcaption{display:none}#investeerderszekerheden .zf-tegen{margin-top:8px;padding:7px 10px;font-size:10.5px}#investeerderszekerheden .zk-flow{margin-top:8px}}
+
+/* Zo snel gaat het: tijdlijn met zeshoekige stappen en een lijn die vol loopt */
+.tijdlijn{list-style:none;margin:20px 0 18px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;position:relative;max-width:620px}
+.tijdlijn:before,.tijdlijn:after{content:'';position:absolute;left:19px;right:calc(25% - 19px);top:19px;height:2px;background:#d8e0dc}
+.tijdlijn:after{background:linear-gradient(90deg,#9fb3aa,#5f7d70);transform-origin:left;transform:scaleX(1)}
+.tijdlijn li{position:relative;z-index:1;display:grid;gap:4px;align-content:start}
+.tijdlijn i{width:40px;height:40px;display:grid;place-items:center;font:400 18px 'Instrument Serif',Georgia,serif;font-style:normal;color:#fff;background:#7f998d;clip-path:polygon(25% 3%,75% 3%,100% 50%,75% 97%,25% 97%,0 50%);box-shadow:none;position:relative;margin-bottom:6px}
+
+.tijdlijn li:last-child i{background:#2e2e2e;color:#fff}
+.tijdlijn b{font-weight:500;font-size:13px;line-height:1.3;color:#2e2e2e}
+.tijdlijn span{font-size:11.5px;line-height:1.45;color:#5c6a65}
+.chapter.active .tijdlijn:after{animation:tlvul 1.6s .3s ease-in-out both}
+.chapter.active .tijdlijn li{animation:zfin .5s ease-out both;animation-delay:calc(.25s + var(--d) * .38s)}
+@keyframes tlvul{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(max-width:760px){
+  .tijdlijn{grid-template-columns:1fr;gap:8px;margin:12px 0}
+  .tijdlijn:before,.tijdlijn:after{left:15px;right:auto;top:16px;bottom:16px;width:2px;height:auto}
+  .tijdlijn:after{transform-origin:top}
+  .tijdlijn li{grid-template-columns:32px 1fr;column-gap:12px;row-gap:0;align-items:center}
+  .tijdlijn i{width:32px;height:32px;font-size:15px;margin:0;grid-row:span 2}
+  .tijdlijn b{font-size:12px}.tijdlijn span{font-size:10.5px}
+  .chapter.active .tijdlijn:after{animation-name:tlvulv}
+}
+@keyframes tlvulv{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@media(prefers-reduced-motion:reduce){.chapter.active .tijdlijn:after,.chapter.active .tijdlijn li{animation:none}}
+
+/* 'Vooraan in de rij': luchtiger dan een kapitaalstapel */
+.zf-rij2{position:relative;height:74px}
+.zf-rij2 .zr-inv{position:absolute;left:8px;right:8px;top:8px;height:34px;border-radius:10px;background:#fff;border:1px solid #cdd8d3;display:grid;place-items:center;font-size:11px;font-weight:500;box-shadow:0 6px 14px #34413c14}
+.zf-rij2 .zr-kussen{position:absolute;left:0;right:0;bottom:2px;height:28px;border-radius:14px 14px 18px 18px;background:linear-gradient(180deg,#9fb3aa,#5f7d70);color:#fff;display:grid;place-items:center;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;z-index:-0}
+.zf-rij2 .zr-inv{z-index:1}
+.zf-rij2 .zr-eerst{position:absolute;left:-4px;top:-2px;z-index:2;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;background:#2e2e2e;color:#fff;font:400 13px 'Instrument Serif',Georgia,serif}
+.chapter.active .zf-rij2 .zr-inv{animation:zrland .7s 1.2s cubic-bezier(.3,1.4,.5,1) both}
+@keyframes zrland{from{transform:translateY(-14px);opacity:0}to{transform:none;opacity:1}}
+@media(max-width:760px){.zf-rij2{height:58px}.zf-rij2 .zr-inv{height:28px;top:6px;font-size:10px}.zf-rij2 .zr-kussen{height:22px;font-size:8px}.zf-rij2 .zr-eerst{width:22px;height:22px;font-size:11px}}
+
+@media(min-width:1101px){.product-window{right:max(6%,96px)!important}.zk-visual{right:max(6%,96px)!important}}
+
+/* Samengevoegde stappen: twee schermen na elkaar in één venster */
+.cdx .cdv{position:absolute;inset:0;overflow:hidden}
+.cdx .cdv-b{opacity:0}
+.chapter.active .cdx .cdv-a{animation:cdva 11s infinite}
+.chapter.active .cdx .cdv-b{animation:cdvb 11s infinite}
+@keyframes cdva{0%,44%{opacity:1;transform:none}50%,94%{opacity:0;transform:translateX(-24px)}100%{opacity:1;transform:none}}
+@keyframes cdvb{0%,46%{opacity:0;transform:translateX(24px)}52%,92%{opacity:1;transform:none}98%,100%{opacity:0;transform:translateX(24px)}}
+.rr .steps{grid-template-columns:repeat(5,1fr)!important}
+@media(prefers-reduced-motion:reduce){.cdx .cdv-b{display:none}}
+
+/* Capilex scène 05 (Lex 04-11): investeerder ↔ Capilex ↔ vastgoed; inleg omlaag, hypotheekrecht omhoog */
+.hv{gap:0;max-width:500px}
+.hv-kaart{display:grid;align-items:center;padding:14px 18px;border-radius:18px;background:#ffffffd9;border:1px solid #fff;box-shadow:0 14px 34px #34413c17;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.hv-kaart b{display:block;font-weight:500;font-size:14px;color:#2e2e2e}
+.hv-kaart span{font-size:11.5px;line-height:1.45;color:#5c6a65}
+.hv-inv{grid-template-columns:46px 1fr;gap:14px}
+.hv-inv i{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#2e2e2e;color:#fff;font:400 22px 'Instrument Serif',Georgia,serif}
+.hv-cl{grid-template-columns:auto 1fr;gap:18px;background:#2e2e2e;border-color:#2e2e2e}
+.hv-cl img{height:20px;filter:brightness(0) invert(1)}
+.hv-cl span{color:#e9eef0}
+.hv-stroom{display:grid;grid-template-columns:1fr 1fr;height:62px}
+.hv-stroom>span{position:relative;display:flex;align-items:center;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase}
+.hv-stroom>span:before{content:'';position:absolute;top:2px;bottom:2px;width:2px}
+.hv-stroom>span:after{content:'';position:absolute;width:9px;height:9px;border-style:solid;transform:rotate(45deg)}
+.hv-neer{padding-left:calc(25% + 14px);color:#59685f}
+.hv-neer:before{left:25%;background:#8a948f}
+.hv-neer:after{left:calc(25% - 3.5px);bottom:3px;border-width:0 2px 2px 0;border-color:#8a948f}
+.hv-op{padding-left:calc(25% + 14px);color:#3f6152;font-weight:500}
+.hv-op:before{left:25%;width:3px!important;background:#5f7d70}
+.hv-op:after{left:calc(25% - 3px);top:3px;border-width:2px 0 0 2px;border-color:#5f7d70}
+.hv-op u{text-decoration:none;padding:6px 11px;border-radius:20px;background:#5f7d70;color:#fff;box-shadow:0 8px 20px #5f7d7040}
+.hv-panden{grid-template-columns:auto 1fr;gap:10px 16px}
+.hv-huizen{display:flex;gap:5px}
+.hv-huizen svg{width:30px;height:30px;fill:#e9eef0;stroke:#5f7d70;stroke-width:1.3;stroke-linejoin:round}
+.hv-waarde{grid-column:1/-1;display:grid;grid-template-columns:68% 32%;border-radius:9px;overflow:hidden;font-size:10px}
+.hv-waarde span{padding:6px 10px;font-size:10px;line-height:1.3}
+.hv-lening{background:#5f7d70;color:#fff!important}
+.hv-over{background:repeating-linear-gradient(135deg,#eef2f0 0 6px,#dfe6e2 6px 12px);color:#3d4a45!important}
+.hv-pillen{list-style:none;display:flex;gap:8px;margin:12px 0 0;padding:0}
+.hv-pillen li{flex:1;text-align:center;white-space:nowrap;padding:8px 6px;border-radius:12px;font-size:11px;color:#2e2e2e;background:#ffffffb8;border:1px solid #ffffffee}
+.chapter.active .hv>.hv-kaart,.chapter.active .hv>.hv-stroom,.chapter.active .hv>.hv-pillen{animation:zfin .55s ease-out both;animation-delay:calc(.2s + var(--d) * .14s)}
+@media(max-width:1100px) and (min-width:761px){.hv-stroom{height:44px}.hv-pillen li{font-size:10px}}
+@media(max-height:780px) and (min-width:761px){.hv-stroom{height:40px}.hv-kaart{padding:10px 14px}.hv-huizen svg{width:24px;height:24px}}
+@media(max-width:760px){.hv-stroom{height:30px}.hv-stroom>span{font-size:8px}.hv-op u{padding:3px 8px}.hv-kaart{padding:8px 11px;border-radius:12px}.hv-inv{grid-template-columns:32px 1fr;gap:10px}.hv-inv i{width:32px;height:32px;font-size:16px}.hv-cl{gap:12px}.hv-cl img{height:15px}.hv-kaart b{font-size:12px}.hv-kaart span{font-size:10px}.hv-huizen svg{width:20px;height:20px}.hv-waarde span{padding:3px 8px}.hv-pillen{margin-top:7px;gap:5px}.hv-pillen li{font-size:9px;padding:5px 3px}}
+@media(prefers-reduced-motion:reduce){.chapter.active .hv *{animation:none!important}}
+
+/* Zijproject A&L Living: rijke scènes, apparaten rechts in het midden van de vrije ruimte */
+.al-label{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:500;white-space:nowrap}
+.al-label img{width:20px;height:20px;border-radius:5px}
+.al-scene .copy{width:40%;max-width:540px}
+#opening.al-scene h1{font-size:clamp(70px,7.6vw,124px)}
+.al-toon{position:absolute;left:47%;right:6.5%;top:calc(50% + 43px);transform:translateY(-50%);margin:0;z-index:1}
+.al-toon figcaption{position:absolute;left:0;right:0;bottom:-26px;text-align:center;font-size:10px;color:#59685f}
+.al-tab{width:100%;max-width:min(760px,104vh);margin:0 auto;border-radius:22px;overflow:hidden;border:8px solid #2e2e2e;background:#f6efe3;box-shadow:0 40px 80px #2a3b3640}
+.al-tab img,.al-tel img{display:block;width:100%;height:auto}
+.al-tel{width:min(280px,21vw,36vh);flex:none;border-radius:32px;overflow:hidden;background:#f6efe3;border:7px solid #2e2e2e;box-shadow:0 34px 70px #2a3b3647}
+.al-hero{padding-bottom:6vh}
+.al-over{position:absolute;right:-1%;bottom:-3vh;width:min(190px,14vw,25vh);border-radius:24px;border-width:6px}
+.al-noten{display:grid;grid-template-columns:auto minmax(0,1fr);gap:26px;align-items:center}
+.al-noten ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.al-noten li,.al-lijst li{font-size:12.5px;line-height:1.45;color:#4c5955}
+.al-noten li{position:relative;padding:13px 16px;border-radius:14px;background:#ffffffd9;border:1px solid #fff;box-shadow:0 10px 26px #34413c12}
+.al-noten li:before{content:'';position:absolute;left:-27px;top:50%;width:27px;height:1px;background:#9fb3aa}
+.al-noten b,.al-lijst b{display:block;font-weight:500;color:#2e2e2e}
+.al-cijfers{list-style:none;display:flex;gap:12px;margin:20px 0 14px;padding:0}
+.al-cijfers li{flex:1;padding:12px 14px;border-radius:14px;background:#ffffffc7;border:1px solid #fff;font-size:11px;line-height:1.35;color:#4c5955}
+.al-cijfers b{display:block;font:400 30px/1 'Instrument Serif',Georgia,serif;color:#2e2e2e;margin-bottom:3px}
+.al-chips-l{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin:16px 0 0;padding:0}
+.al-chips-l li{padding:7px 12px;border-radius:20px;font-size:11.5px;background:#ffffffc7;border:1px solid #fff}
+.al-lijst{list-style:none;display:grid;gap:9px;margin:16px 0 0;padding:0}
+.al-lijst li{padding-left:14px;border-left:2px solid #9fb3aa}
+.al-verhaal{position:absolute;left:50%;right:8%;top:calc(50% + 43px);transform:translateY(-50%);margin:0;display:grid;gap:0;max-width:620px;z-index:1}
+.al-kop{margin:0 0 10px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#3d4a45}
+.al-eilanden{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.al-eilanden li{padding:14px 15px;border-radius:15px;font-weight:500;font-size:14px;background:#ffffffd9;border:1px solid #fff;box-shadow:0 10px 26px #34413c12}
+.al-eilanden small{display:block;font-weight:400;font-size:11px;color:#5c6a65}
+.al-samen{position:relative;height:44px}
+.al-samen i{position:absolute;bottom:0;left:50%;width:2px;height:100%;background:#5f7d70;transform-origin:bottom}
+.al-samen i:nth-child(1){transform:rotate(58deg);height:64px;opacity:.5}.al-samen i:nth-child(3){transform:rotate(-58deg);height:64px;opacity:.5}
+.al-een{display:grid;grid-template-columns:56px 1fr;gap:16px;align-items:center;padding:16px 20px;border-radius:18px;background:#2e2e2e;box-shadow:0 18px 40px #2a3b3640}
+.al-een img{width:56px;height:56px;border-radius:13px}
+.al-een b{display:block;font-weight:500;font-size:16px;color:#fff}.al-een span{font-size:12px;color:#d8e0dc}
+.al-winst{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.al-winst li{padding:12px 13px;border-radius:14px;background:#ffffffc7;border:1px solid #fff;font-size:11.5px;line-height:1.4;color:#4c5955}
+.al-winst b{display:block;font-weight:500;font-size:12.5px;color:#2e2e2e}
+.chapter.active .al-verhaal>*{animation:zfin .6s ease-out both}
+.chapter.active .al-samen{animation-delay:.15s}.chapter.active .al-een{animation-delay:.3s}.chapter.active .al-winst{animation-delay:.45s}
+@media(min-width:761px) and (max-height:820px){.al-eilanden li{padding:9px 12px;font-size:13px}.al-samen{height:26px}.al-samen i:nth-child(n){height:26px}.al-samen i:nth-child(1),.al-samen i:nth-child(3){display:none}.al-een{padding:10px 16px}.al-winst{margin-top:9px}.al-winst li{padding:8px 11px}}
+.chapter.active .al-toon>*,.chapter.active .al-stapel>*{animation:zfin .6s ease-out both}
+.chapter.active .al-over{animation-delay:.3s}
+.al-stapel{position:absolute;left:54%;right:9%;top:calc(50% + 43px);transform:translateY(-50%);margin:0;display:grid;justify-items:center;max-width:480px;z-index:1}
+.al-stapel>i{width:2px;height:26px;background:#9fb3aa}
+.al-laag{width:100%;padding:15px 20px;border-radius:16px;text-align:center;background:#ffffffd9;border:1px solid #fff;box-shadow:0 12px 30px #34413c14}
+.al-laag b{display:block;font-weight:500;font-size:14px;color:#2e2e2e}.al-laag span{font-size:11.5px;color:#5c6a65}
+.al-stapel .al-donker{background:#2e2e2e;border-color:#2e2e2e}.al-stapel .al-donker b{color:#fff}.al-stapel .al-donker span{color:#d8e0dc}
+.al-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%}
+.al-chips span{padding:8px 13px;border-radius:12px;font-size:11.5px;background:#ffffffb8;border:1px solid #ffffffee;color:#2e2e2e}
+#techniek .f7-brands{display:flex;gap:22px;margin:14px 0}#techniek .f7-brands img{height:18px;width:auto}
+@media(prefers-reduced-motion:reduce){.chapter.active .al-toon *,.chapter.active .al-verhaal *,.chapter.active .al-stapel *{animation:none!important}}
+@media(max-width:760px){
+ .al-scene .copy{width:100%;max-width:none}
+ .enhanced .al-scene{flex-direction:column;align-items:stretch;justify-content:flex-start}
+ .al-toon,.al-stapel,.al-verhaal{position:relative;left:auto;right:auto;top:auto;transform:none;margin-top:12px;width:100%;max-width:none}
+ .al-toon figcaption{display:none}.al-hero{padding-bottom:0}
+ .al-tab{border-width:5px;border-radius:14px}.al-over{display:none}
+ .al-tel{width:38vw;border-radius:20px;border-width:5px}
+ .al-noten{grid-template-columns:38vw minmax(0,1fr);gap:12px}.al-noten ul{gap:6px}.al-noten li{padding:6px 9px;font-size:10px}.al-noten li:before{display:none}
+ .al-verhaal{top:auto;transform:none}.al-winst{display:none}.al-kop{margin-bottom:6px;font-size:8.5px}.al-eilanden{gap:5px}.al-eilanden li{padding:6px 8px;font-size:11px;border-radius:10px}.al-eilanden small{font-size:9px}.al-samen{height:14px}.al-samen i:nth-child(1),.al-samen i:nth-child(3){display:none}.al-samen i:nth-child(2){height:14px}.al-een{grid-template-columns:36px 1fr;gap:10px;padding:8px 11px;border-radius:12px}.al-een img{width:36px;height:36px;border-radius:8px}.al-een b{font-size:12.5px}.al-een span{font-size:10px}
+ #waarom .copy p[data-cms="waarom.p4"]{display:none}
+ .al-laag{padding:8px 12px}.al-stapel>i{height:10px}.al-chips span{padding:5px 9px;font-size:10px}
+ .al-cijfers{margin:12px 0 8px}.al-cijfers b{font-size:22px}.al-cijfers li{padding:8px 10px}
+ .al-lijst{gap:5px;margin-top:10px}.al-lijst li{font-size:11px}.al-chips-l{margin-top:10px}.al-chips-l li{font-size:10px;padding:5px 9px}
+ #opening .opening-opdeze{display:none}
+}
+/* Voor ondernemers: vier kerncijfers als tegels, binnen de tekstkolom */
+.h6-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:100%}
+.h6-cards article{min-width:0;overflow-wrap:anywhere}
+#ondernemers .h6-cards{gap:10px;margin:18px 0 14px}
+#ondernemers .h6-cards article{padding:13px 15px;border-radius:14px;background:#ffffffc7;border:1px solid #fff;box-shadow:0 10px 26px #34413c12;font-size:11.5px;line-height:1.4;color:#4c5955}
+#ondernemers .h6-cards strong{display:inline-block;margin-bottom:3px;font:400 clamp(21px,1.9vw,27px)/1.1 'Instrument Serif',Georgia,serif;letter-spacing:-.02em;color:#2e2e2e}
+.hv-neer u{text-decoration:none;padding:6px 11px;border-radius:20px;background:#ffffffd9;color:#3d4a45}
+#ondernemers h2{font-size:clamp(46px,4.5vw,70px)}
+#investeerder .h6-cards{gap:8px}#investeerder .h6-cards article{padding:10px 14px}
+#investeerder .h6-cards{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#ondernemers .h6-cards article{padding:10px 13px}
+@media(min-width:761px){#investeerderszekerheden .copy{max-width:46%}}
+
+/* Exclusief uitgelicht; zekerheidsrechten als hoofdzaak onderin het schema */
+.hv-inv{grid-template-columns:46px 1fr auto}
+.hv-excl{padding:9px 13px;border-radius:12px;background:#2e2e2e;color:#d8e0dc;font-size:10.5px;line-height:1.35;text-decoration:none}
+.hv-excl b{color:#fff;font-size:12px}
+.hv-pillen li{font-weight:500;background:#5f7d70;border-color:#5f7d70;color:#fff}
+.h6-propositions article:nth-child(4){background:#2e2e2e!important;border-color:#2e2e2e!important}
+.enhanced .chapter .copy .h6-propositions article:nth-child(4) *{color:#fff!important}
+@media(max-width:760px){.hv-inv{grid-template-columns:32px 1fr auto}.hv-excl{padding:5px 8px;font-size:8.5px}.hv-excl b{font-size:10px}}
+/* Leesbaarheid: tekst die op de foto valt krijgt een eigen ondergrond */
+.al-kop{justify-self:start;padding:6px 12px;border-radius:20px;background:#ffffffd9}
+
+/* A&L Living: speelhuis (bediening) en technische log */
+.al-demo{position:absolute;left:50%;right:8%;top:calc(50% + 43px);transform:translateY(-50%);margin:0;max-width:600px;padding:18px 20px;border-radius:24px;background:#fbf6ec;border:7px solid #2e2e2e;box-shadow:0 34px 70px #2a3b3647;z-index:1;display:grid;gap:10px;color:#2e2a24}
+.al-demo button{font:inherit;color:inherit;cursor:pointer;border:0}
+.dm-kop{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dm-kop b{display:block;font-size:17px;font-weight:600}.dm-kop span{font-size:11.5px;color:#7a6f5f}
+#dm-score{flex:none;padding:6px 11px;border-radius:20px;background:#a8781f;color:#fff;font-size:11.5px;font-weight:500;transition:background .3s}
+.dm-huis{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:66px;gap:7px}
+.dk{position:relative;border-radius:14px!important;background:#3a352e;color:#d9cfbf!important;font-size:12.5px!important;font-weight:500;text-align:left;padding:10px 12px;transition:background .35s,color .35s,box-shadow .35s}
+.dk i{display:block;width:9px;height:9px;margin-bottom:6px;border-radius:50%;background:#6d6456;transition:.35s}
+.dk[aria-pressed=true]{background:linear-gradient(150deg,#fff4d8,#f3cf7f);color:#2e2a24!important;box-shadow:0 0 26px #f3cf7f99}
+.dk[aria-pressed=true] i{background:#a8781f;box-shadow:0 0 10px #a8781f}
+.dm-scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+.dm-scenes button{padding:9px 4px;border-radius:12px;background:#fff;font-size:12px;font-weight:500;box-shadow:0 2px 8px #4a3f2a14}
+.dm-scenes button:hover,.dm-rij button:hover{background:#f6ecd7}
+.dm-rij{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:7px;align-items:stretch}
+.dm-rij button{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:12px;background:#fff;font-size:12px;font-weight:500}
+.dm-rij button[aria-pressed=true]{background:#a8781f;color:#fff}
+#dm-accu{font-weight:600}
+.dm-eq{display:flex;align-items:flex-end;gap:2px;height:14px}.dm-eq i{width:3px;height:5px;background:currentColor;border-radius:2px}
+#dm-muziek[aria-pressed=true] .dm-eq i{animation:dmeq .7s ease-in-out infinite alternate}#dm-muziek .dm-eq i:nth-child(2){animation-delay:.2s}#dm-muziek .dm-eq i:nth-child(3){animation-delay:.4s}
+@keyframes dmeq{to{height:14px}}
+.dm-zon{display:grid;gap:3px;padding:6px 11px;border-radius:12px;background:#fff;font-size:11px}.dm-zon input{width:100%;accent-color:#a8781f;margin:0}
+.dm-meter{height:8px;border-radius:5px;background:#eadfca;overflow:hidden}#dm-balk{height:100%;width:50%;background:#5f7d70;transition:width .4s,background .4s}
+#dm-melding{margin:0;font-size:12px;color:#5a5044;min-height:17px}
+.al-demo figcaption{font-size:9.5px;color:#8a7f6e}
+.al-log{width:100%;margin:12px 0 0;padding:11px 14px;border-radius:12px;background:#1f2321;color:#9fd3b4;font:11px/1.6 ui-monospace,Menlo,monospace;white-space:pre-wrap}
+.al-stapel>i{height:16px}.al-laag{padding:11px 18px}
+@media(prefers-reduced-motion:reduce){#dm-muziek .dm-eq i{animation:none!important}}
+@media(max-height:820px) and (min-width:761px){.dm-huis{grid-auto-rows:50px}.al-demo{gap:7px;padding:12px 16px}.al-log{display:none}.al-demo figcaption{display:none}}
+@media(max-width:760px){.al-demo{position:relative;left:auto;right:auto;top:auto;transform:none;max-width:none;width:100%;margin-top:10px;padding:10px 12px;border-width:5px;border-radius:16px;gap:6px}.dm-kop b{font-size:13px}.dm-kop span{display:none}.dm-huis{grid-auto-rows:38px;gap:4px}.dk{padding:5px 8px;font-size:10px!important;border-radius:9px!important}.dk i{width:6px;height:6px;margin-bottom:2px}.dm-scenes button{padding:6px 2px;font-size:10px}.dm-rij{grid-template-columns:1fr 1fr}.dm-zon{grid-column:1/-1}.dm-rij button{padding:6px 8px;font-size:10px}#dm-melding{font-size:10px}.al-demo figcaption{display:none}#bediening .al-chips-l{display:none}.al-log{display:none}}
+
+/* Zijprojecten: per sponsor een schermvullende video, tekst links op een zachte leesgrond */
+.sp-vol{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.enhanced .sp-scene:has(.sp-vol)::before{-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(90deg,#f4f7f5f2 0%,#f4f7f5d9 30%,#f4f7f566 50%,#f4f7f500 66%)}
+.sp-scene .copy{width:42%;max-width:560px}
+.sp-scene .text-link{margin-top:12px}
+.sp-scene .al-cijfers{max-width:480px}
+.sp-naar{display:flex;align-items:center;gap:14px;max-width:400px;margin:14px 0;padding:12px 16px;border-radius:16px;background:#2e2e2e;color:#d8e0dc;font-size:12px;text-decoration:none}
+.sp-naar img{width:48px;height:48px;border-radius:11px}.sp-naar b{display:block;color:#fff;font-size:15px;font-weight:500}
+@media(max-width:760px){.sp-scene .copy{width:100%;max-width:none}.enhanced .sp-scene:has(.sp-vol)::before{background:linear-gradient(180deg,#f4f7f5f7 0%,#f4f7f5ee 70%,#f4f7f566 86%,#f4f7f500 100%)}}
+/* RiskResolve: eigen opsporingstools als zes tegels met een doorlopende scanlijn */
+.fr-tools{position:absolute;left:50%;right:7.5%;top:calc(50% + 43px);transform:translateY(-50%);margin:0;z-index:1;max-width:680px;overflow:hidden;border-radius:22px}
+.fr-tools ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.fr-tools li{display:grid;grid-template-columns:34px 1fr;gap:1px 12px;padding:14px 15px;border-radius:16px;background:#ffffffdb;border:1px solid #fff;box-shadow:0 12px 30px #34413c14}
+.fr-tools svg{grid-row:span 2;width:30px;height:30px;fill:none;stroke:#5f7d70;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.fr-tools b{font-weight:500;font-size:14px;color:#2e2e2e}
+.fr-tools span{font-size:11.5px;line-height:1.45;color:#5c6a65}
+.fr-scan{position:absolute;left:0;right:0;top:0;height:70px;z-index:2;pointer-events:none;background:linear-gradient(180deg,#9fd3b400,#9fd3b42e 80%,#5f7d70aa 100%);transform:translateY(-80px)}
+.chapter.active .fr-scan{animation:frscan 4.5s linear infinite}
+@keyframes frscan{to{transform:translateY(560px)}}
+.chapter.active .fr-tools li{animation:zfin .5s ease-out both;animation-delay:calc(.15s + var(--d) * .09s)}
+#opsporen .copy{width:40%;max-width:520px}
+@media(prefers-reduced-motion:reduce){.chapter.active .fr-scan,.chapter.active .fr-tools li{animation:none}.fr-scan{display:none}}
+@media(max-height:820px) and (min-width:761px){.fr-tools li{padding:9px 12px}.fr-tools span{font-size:10.5px}}
+@media(max-width:760px){.enhanced #opsporen{flex-direction:column;align-items:stretch;justify-content:flex-start}#opsporen .copy{width:100%;max-width:none}#opsporen .copy p[data-cms="opsporen.p3"]{display:none}.fr-tools{position:relative;left:auto;right:auto;top:auto;transform:none;margin-top:10px;max-width:none}.fr-tools ul{gap:5px}.fr-tools li{grid-template-columns:22px 1fr;gap:0 7px;padding:7px 8px;border-radius:10px}.fr-tools svg{width:20px;height:20px}.fr-tools b{font-size:11px}.fr-tools span{font-size:9px;line-height:1.3}}
+#opsporen h2{font-size:clamp(46px,4.4vw,68px)}
+@media(max-width:1100px) and (min-width:761px){#investeerderszekerheden .copy{max-width:43%}#investeerderszekerheden .hv-inv{grid-template-columns:40px 1fr}#investeerderszekerheden .hv-excl{grid-column:1/-1}}
+/* Kleine telefoons: alles in één beeld, voorbeeldschermen wijken voor de tekst */
+@media(max-width:760px) and (max-height:780px){
+  .enhanced .has-product .product-window,.enhanced .h6 figure:not(.hv){display:none}
+  .enhanced .company-content .copy{zoom:.86;max-height:calc((100svh - 150px)/.86)}
+  .al-toon,.al-stapel,.al-demo,.al-verhaal,.fr-tools{zoom:.84}
+  #techniek .f7-brands,#techniek .origin{display:none}
+}
+@media(max-width:900px) and (min-width:761px){#investeerderszekerheden .copy{max-width:40%}.hv{left:50%!important;right:5%!important}.hv-stroom>span{font-size:8px}.hv-stroom>span u{padding:4px 7px}.hv-pillen li{font-size:9px}}
+@media(max-width:1100px) and (min-width:761px){#investeerderszekerheden .copy{width:41%!important;max-width:41%!important}.hv{left:46%!important;right:4%!important}}
+@media(max-width:900px) and (min-width:761px){#investeerder .copy{zoom:.8}}
+@media(max-width:760px){#techniek .f7-brands{display:none}}
