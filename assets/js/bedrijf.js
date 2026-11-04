@@ -143,8 +143,14 @@ async function start(){
       if(now<dichtTot)return;if(wachtOpEinde){if(nieuw)wachtOpEinde=false;else return;}
       if(gat>600)som=0;som+=e.deltaY;if(Math.abs(som)<70)return;
       const stap=Math.sign(som);som=0;wachtOpEinde=true;dichtTot=now+1000;naarScene(basis()+stap);},{passive:false,capture:true});
-    addEventListener('touchstart',()=>{touchMode=true;clearTimeout(touchTimer);},{passive:true});
-    lenis.on('scroll',()=>{if(!touchMode)return;clearTimeout(touchTimer);touchTimer=setTimeout(()=>{const t=snapTarget(scrollY);if(t!=null)lenis.scrollTo(t,{duration:.8,easing:x=>1-Math.pow(1-x,3)});},150);});
+    // Telefoon (Lex 04-11): één veeg = één scène, net als op de computer. Alleen tekst die zelf scrollt, het menu en schuifjes houden hun eigen veeg.
+    let ty=0,tx=0,eigen=null,touchDicht=0;
+    const eigenZone=t=>{const c=t.closest?.('.copy,.nav,input,.weergave-modal,.auto-toast');if(!c)return null;return c.classList?.contains('copy')&&c.scrollHeight<=c.clientHeight+3?null:c;};
+    addEventListener('touchstart',e=>{touchMode=true;ty=e.touches[0].clientY;tx=e.touches[0].clientX;eigen=eigenZone(e.target);},{passive:true});
+    addEventListener('touchmove',e=>{if(!eigen&&e.cancelable)e.preventDefault();},{passive:false});
+    addEventListener('touchend',e=>{const t=e.changedTouches[0],dy=ty-t.clientY,dx=tx-t.clientX,now=performance.now();if(Math.abs(dy)<45||Math.abs(dy)<Math.abs(dx)*1.2||now<touchDicht)return;
+      if(eigen){if(!eigen.classList?.contains('copy'))return;const eind=eigen.scrollTop+eigen.clientHeight>=eigen.scrollHeight-2,begin=eigen.scrollTop<=1;if(!(dy>0?eind:begin))return;}
+      touchDicht=now+750;naarScene(basis()+Math.sign(dy));},{passive:true});
   }
   // Automatisch afspelen: de film loopt als een video; zelf scrollen pauzeert met een melding
   const toast=document.createElement('div');toast.className='auto-toast';toast.hidden=true;toast.setAttribute('role','status');
@@ -184,7 +190,7 @@ async function start(){
     if(Math.abs(scrollY-doel)>travel/LAST*1.2){const kant=scrollY>doel?1:-1;lenis.scrollTo(Math.max(0,doel+kant*travel/LAST*.35),{immediate:true,force:true});}
     glijdt=true;lenis.scrollTo(doel,{duration:.9,easing:t=>1-Math.pow(1-t,3),force:true,onComplete:()=>{glijdt=false;}});};
   const basis=()=>glijdt?idx:Math.max(0,current);
-  addEventListener('wheel',()=>{glijdt=false;},{passive:true});addEventListener('touchstart',()=>{glijdt=false;},{passive:true});
+  addEventListener('wheel',()=>{glijdt=false;},{passive:true});
   const naam=ch=>{const h=ch.querySelector('h1,h2');if(!h)return ch.id;const regels=[...h.querySelectorAll('.line')].map(x=>x.textContent.trim());return (regels.length?regels.join(' '):h.textContent).replace(/\s+/g,' ').trim().replace(/\.$/,'');};
   const rail=document.createElement('nav');rail.className='scene-rail';rail.setAttribute('aria-label','Scènes');
   rail.innerHTML='<button type="button" class="sr-pijl" data-stap="-1" aria-label="Vorige scène">↑</button><ol>'+chapters.map((ch,i)=>`<li><a href="#${ch.id}" data-n="${i}"><span>${naam(ch)}</span><i>${String(i).padStart(2,'0')}</i></a></li>`).join('')+'</ol><button type="button" class="sr-pijl" data-stap="1" aria-label="Volgende scène">↓</button>';

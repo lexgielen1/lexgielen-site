@@ -323,3 +323,15 @@ h1{font-size:clamp(64px,9vw,138px);overflow:visible}.heading-line,.heading-line 
   .enhanced #investeerder .copy{zoom:.78;max-height:calc((100svh - 150px)/.78)}
 }
 @media(min-width:761px){.enhanced #faq .copy{padding:24px 30px;border-radius:22px;background:#f4f7f5e8;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}}
+
+/* Mobiel (Lex 04-11): tekst hoger en ruimer; de leesgrond loopt mee van boven naar beneden, het beeld blijft onderin zichtbaar */
+@media(max-width:760px){
+  .enhanced .chapter{align-items:flex-start;justify-content:flex-start;padding-top:128px}
+  .enhanced .chapter:not(.has-product):not(.sp-scene) .copy{align-self:flex-start}
+  .enhanced h1,.enhanced h2{margin-bottom:18px}
+  .enhanced .eyebrow{margin-bottom:14px}
+  .enhanced .copy p{line-height:1.65}
+  .enhanced .intro+.intro{margin-top:14px}
+  .brandrow{margin-top:26px}
+  #visual:after,.mobile-view #visual:after{background:linear-gradient(180deg,#f4f7f5f5 0%,#f4f7f5e6 58%,#f4f7f580 78%,#f4f7f500 100%)!important}
+}

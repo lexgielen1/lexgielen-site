@@ -664,3 +664,4 @@
 @media(max-width:1100px) and (min-width:761px){#investeerderszekerheden .copy{width:41%!important;max-width:41%!important}.hv{left:46%!important;right:4%!important}}
 @media(max-width:900px) and (min-width:761px){#investeerder .copy{zoom:.8}}
 @media(max-width:760px){#techniek .f7-brands{display:none}}
+@media(max-width:760px) and (max-height:880px){.enhanced #ondernemers .product-window,.enhanced #zekerheid figure{display:none}}
