@@ -177,8 +177,10 @@ async function start(){
   if(schakel){schakel.hidden=false;schakel.innerHTML='Weergave: <b>'+{vrij:'vrij',scene:'per scène',auto:'automatisch'}[MODUS]+'</b> <i>⇄</i>';schakel.addEventListener('click',open);}
 
   // Scènebalk rechts + pijltjestoetsen (Lex 03-11): elke scène in één klik, in elke weergave
+  const sluier=document.createElement('div');sluier.className='sluier';sluier.setAttribute('aria-hidden','true');document.body.append(sluier);
   const naarScene=n=>{n=Math.max(0,Math.min(LAST,n));if(n===idx&&Math.abs(scrollY-n/LAST*travelOf())<4)return;idx=n;const travel=travelOf(),doel=n/LAST*travel;
-    if(Math.abs(scrollY-doel)>travel/LAST*1.2){const kant=scrollY>doel?1:-1;lenis.scrollTo(Math.max(0,doel+kant*travel/LAST*.35),{immediate:true,force:true});}
+    // Verre sprong via het menu: kort wit doorfaden in plaats van langs de scènes ertussen schieten.
+    if(Math.abs(scrollY-doel)>travel/LAST*1.2){glijdt=true;sluier.classList.add('aan');setTimeout(()=>{lenis.scrollTo(doel,{immediate:true,force:true});setTimeout(()=>{sluier.classList.remove('aan');glijdt=false;},140);},220);return;}
     glijdt=true;lenis.scrollTo(doel,{duration:.9,easing:t=>1-Math.pow(1-t,3),force:true,onComplete:()=>{glijdt=false;}});};
   const basis=()=>glijdt?idx:Math.max(0,current);
   addEventListener('wheel',()=>{glijdt=false;},{passive:true});

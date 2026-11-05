@@ -335,3 +335,4 @@ h1{font-size:clamp(64px,9vw,138px);overflow:visible}.heading-line,.heading-line 
   .brandrow{margin-top:26px}
   #visual:after,.mobile-view #visual:after{background:linear-gradient(180deg,#f4f7f5f5 0%,#f4f7f5e6 58%,#f4f7f580 78%,#f4f7f500 100%)!important}
 }
+.sluier{position:fixed;inset:0;z-index:15;background:#f1f5f4;opacity:0;pointer-events:none;transition:opacity .2s ease}.sluier.aan{opacity:1}

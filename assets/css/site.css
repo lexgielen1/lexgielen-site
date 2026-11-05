@@ -442,3 +442,4 @@ em{color:#5f7d70}
   #visual:after,.mobile-view #visual:after{background:linear-gradient(180deg,#f4f7f5f5 0%,#f4f7f5e6 58%,#f4f7f580 78%,#f4f7f500 100%)!important}
 }
 @media(max-width:760px){#visual:after,.mobile-view #visual:after{content:'';position:absolute;inset:0;z-index:3}html.enhanced{overscroll-behavior:none}}
+.sluier{position:fixed;inset:0;z-index:15;background:#f1f5f4;opacity:0;pointer-events:none;transition:opacity .2s ease}.sluier.aan{opacity:1}
