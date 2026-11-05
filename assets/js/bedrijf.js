@@ -13,6 +13,9 @@ menu.addEventListener('click', () => {
 });
 nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('open'); menu.setAttribute('aria-expanded','false'); menu.textContent='Menu +'; } });
 document.addEventListener('keydown', e => {if(e.key==='Escape'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu +';}});
+// Telefoon: lange vragenscène wordt een korte doorverwijzing, zodat alles in één beeld past (desktop houdt alle inhoud).
+if(mobile){const faq=document.querySelector('#faq');if(faq&&faq.querySelectorAll('details').length>7){faq.classList.add('mobile-faq');faq.querySelector('.copy')?.removeAttribute('data-lenis-prevent');
+  faq.querySelectorAll('details').forEach((d,i)=>{if(i>3)return;const a=document.createElement('a');a.className='mobile-question';a.href='https://www.capilex.com/nl/help';a.target='_blank';a.rel='noopener';a.textContent=d.querySelector('summary').textContent.trim()+' ↗';d.before(a);});}}
 const last = chapters.length - 1;
 const assetBase = new URL('../img/gen/', import.meta.url);
 const paths = chapters.map(el => new URL(`scene-${el.dataset.image}${mobile ? '-mobile' : ''}.jpg`, assetBase).href);
